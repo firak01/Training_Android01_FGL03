@@ -53,23 +53,33 @@ public class DisplayMessageActivity extends ActionBarActivity { //Activity
 		}else{
 			iColor = Color.GRAY;
 		}
-		
-		//FGL: Check System Version at Runtime
-		if ( Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB){
-			//FGL: Aktiviere den Home / UP Button 
-//			android.support.v7.app.ActionBar actionBar = getSupportActionBar();  //funktioniert nur in einer ActionBarActivity
-//			actionBar.setDisplayHomeAsUpEnabled(true);
-//			
-//			//Style den Hintergrund		
-//			actionBar.setBackgroundDrawable(new ColorDrawable(iColor)); // set your desired color
-		}else{
-			// If your minSdkVersion is 11 or higher, instead use:
-			android.app.ActionBar actionBar = getActionBar();
-			actionBar.setDisplayHomeAsUpEnabled(true);//To allow Up navigation with the app icon in the action bar
 			
-			//Style den Hintergrund			
-			actionBar.setBackgroundDrawable(new ColorDrawable(iColor)); // set your desired color		
-		}
+		//FGL: Check System Version at Runtime
+				if ( Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB){
+					//FGL: Aktiviere den Home / UP Button 
+//					android.support.v7.app.ActionBar actionBar = getSupportActionBar();  //funktioniert nur in einer ActionBarActivity
+//					actionBar.setDisplayHomeAsUpEnabled(true);
+//					
+//					//Style den Hintergrund		
+//					actionBar.setBackgroundDrawable(new ColorDrawable(iColor)); // set your desired color
+				}else{
+					Log.d("FGLTEST", "Methode sDisplayActivity.onCreate(..) - minSdkVersion is 11 or higher.");
+					
+					// If your minSdkVersion is 11 or higher, instead use:
+					android.app.ActionBar actionBar = getActionBar();
+					if(actionBar==null){
+						//TODO GOO 20160829: Warum ist Action Bar NULL?
+						Log.d("FGLTEST", "Methode sDisplayActivity.onCreate(..) - action bar IS NULL.");
+						
+					}else{
+					Log.d("FGLTEST", "Methode sDisplayActivity.onCreate(..) - action bar not null.");
+					
+					actionBar.setDisplayHomeAsUpEnabled(true);
+					
+					//Style den Hintergrund			
+					actionBar.setBackgroundDrawable(new ColorDrawable(iColor)); // set your desired color
+					}		
+				}
 			
 		
 		// Create the text view
